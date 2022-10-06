@@ -12,8 +12,9 @@ function SignInForm(props) {
         setPassword(e.target.value)
     }
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        e.persist()
         fetch(`http://localhost:3000/users`, {
             method: "POST",
             headers: {
@@ -21,22 +22,22 @@ function SignInForm(props) {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                username,
-                password
+                username: username,
+                password: password
             })
         })
             .then(resp => resp.json())
             .then(data => {
                 localStorage.setItem("token", data.jwt)
                 props.handleLogin(data.user)
+                console.log(data)
             })
-        setUsername("")
-        setPassword("")
+
     }
     const formDivStyle = {
         margin: "auto",
         padding: "20px",
-        width: "80%"
+        width: "13%"
     }
 
     return (

@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
-  skip_before_action :require_login, only: [:login, :auto_login]
+  skip_before_action :require_login, only: [:login, :auth_login]
   def login
-    user = User.find_by(username: params[:username])
+    user = User.find_by!(username: params[:username])
     if user && user.authenticate(params[:password])
         payload = {user_id: user.id}
         token = encode_token(payload)
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     end
   end
 
-  def auto_login
+  def auth_login
     if session_user
       render json: session_user
     else

@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
 
-function LoginForm(props) {
+function Login(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [user, setUser] = useState({})
 
-    const handleUsernameChange = (evt) => {
-        setUsername(evt.target.value)
+    const handleLogin = (user) => {
+        setUser(user)
     }
 
-    const handlePasswordChange = (evt) => {
-        setPassword(evt.target.value)
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value)
     }
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault()
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        e.persist()
         fetch(`http://localhost:3000/login`, {
             method: "POST",
             headers: {
@@ -21,22 +27,23 @@ function LoginForm(props) {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                username,
-                password
+                username: username,
+                password: password
             })
         })
-            .then(resp => resp.json())
+            .then(res => res.json())
             .then(data => {
                 localStorage.setItem("token", data.jwt)
-                props.handleLogin(data.user)
+                handleLogin(data.user)
+                console.log(data)
             })
-        setUsername("")
-        setPassword("")
+
+
     }
     const formDivStyle = {
         margin: "auto",
         padding: "20px",
-        width: "80%"
+        width: "13%"
     }
     return (
         <div>
@@ -59,4 +66,4 @@ function LoginForm(props) {
     )
 }
 
-export default LoginForm
+export default Login

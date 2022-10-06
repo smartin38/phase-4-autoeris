@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Header'
-import SignInForm from './SignUpForm'
-import LoginForm from './LoginForm'
+import SignIn from './SignUp'
+import Login from './Login'
 
 function App() {
     const [user, setUser] = useState({})
@@ -11,7 +11,7 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
-            fetch(`http://localhost:3000/auto_login`, {
+            fetch(`http://localhost:4000/auto_login`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -34,7 +34,7 @@ function App() {
 
     const handleAuthClick = () => {
         const token = localStorage.getItem("token")
-        fetch(`http://localhost:3000/user_is_authed`, {
+        fetch(`http://localhost:4000/user_is_authed`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -43,15 +43,15 @@ function App() {
             .then(data => console.log(data))
     }
 
-    console.log(user)
+
 
     const renderForm = () => {
         switch (form) {
             case "login":
-                return <LoginForm handleLogin={handleLogin} />
+                return <Login handleLogin={handleLogin} />
                 // break;
             default:
-                return <SignInForm handleLogin={handleLogin} />
+                return <SignIn handleLogin={handleLogin} />
         }
     }
     return (

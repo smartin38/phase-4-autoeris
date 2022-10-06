@@ -75,6 +75,6 @@ gem 'bcrypt'
 
 gem 'jwt'
 
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'faker'

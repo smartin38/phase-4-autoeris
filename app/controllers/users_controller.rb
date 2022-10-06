@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:create]
+  skip_before_action :require_login, only: [:index, :create]
+
+  def index
+    user = User.all
+    render json: user
+  end
+
   def create
     user = User.create(user_params) 
     if user.valid?
