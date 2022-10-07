@@ -8,8 +8,8 @@ function LandingBar(){
                 <Navbar.Start>
                     <Link href="/">
                     <Button className="text-xl normal-case" color="ghost">
-                        <img src="/img/logo.svg" alt="MindGarden" className="w-10 h-10 text-white p-2"/>
-                        MindGarden
+                        <img src="/img/logo.svg" alt="AutoEris" className="w-10 h-10 text-white p-2"/>
+                        AutoEris
                     </Button>
                     </Link>
                 </Navbar.Start>

@@ -7,10 +7,10 @@ function LandingHero() {
       <Hero.Overlay className="bg-opacity-10" />
       <Hero.Content className="text-center">
         <div className="max-w-2xl">
-          <h1 className="text-5xl font-bold">Transcribe Your Mind</h1>
+          <h1 className="text-5xl font-bold">Github, Begone</h1>
           <p className="py-6">
-            Don't overthink it, your mind is safe with us in our journals. Did you know that overthinkers are exptected to die 10 years earlier than most? 
-            What are you waiting for?  You still have time to save yourself, let us help by tracking your feelings day-to-day so that you can recognize triggers or mood swings and learn ways to better help yourself.
+            Did you know that interacting with github directly is known to cause a 65% increase in blood pressure? Now you do! Don't become another victim of this terrible 
+            epidemic. Eris is here now, and it's aaaall gonna be okay. 
           </p>
           <Button href="login" color="info">Get Started</Button>
           <br></br>

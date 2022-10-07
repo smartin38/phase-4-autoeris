@@ -5,11 +5,11 @@ function DashboardFooter(){
     return (
         <Footer className="p-10 bg-zinc-100">
             <div>
-                <img src="/img/logo-blue.svg" alt="MindGarden" className="w-10 h-10 text-white"/>
+                <img src="/img/logo-blue.svg" alt="AutoEris" className="w-10 h-10 text-white"/>
                 <p>
-                    MindGarden
+                    AutoEris
                     <br />
-                    Providing reliable tech since 2002
+                    I am so sad
                 </p>
             </div>
     

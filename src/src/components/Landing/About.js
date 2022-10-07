@@ -7,12 +7,12 @@ function AboutHero() {
       <Hero id="about">
         <Hero.Overlay className="bg-opacity-10" />
         <Hero.Content className="text-center">
-          <img src="/img/MindGarden_Team.jpeg" alt="Hero" className="object-cover h-96 rounded-xl mt-10" />
+          <img src="/img/AutoEris_Team.jpeg" alt="Hero" className="object-cover h-96 rounded-xl mt-10" />
           <div className="max-w-md">
               <p className="py-6 text-blue-600">
               About Us
             </p>
-            <h1 className="text-5xl font-bold">We are here to help you improve and understand your mood. </h1>
+            <h1 className="text-5xl font-bold">Let AutoEris Handle Github For You. </h1>
           </div>
         </Hero.Content>
       </Hero>
@@ -32,8 +32,8 @@ function AboutHero() {
             </clipPath>
             </defs>
           </svg>
-          <h1 className="font-bold">Founded</h1>
-          <p>Founded by people that care about mental health and want to <br></br>help the people find a way to cope. Chohye Han our creative director/CEO,<br></br> Umut YILDIRIM our CFO/IT, and finally Dr. Roman,<br></br> our Senior Sofware Engineer/Lawyer/Therapist.</p>
+          <h1 className="font-bold">My Creators</h1>
+          <p>I am Eris, and I'm here to help. <br></br>My creators, Shane Martin and Liz Boika, wanters to<br></br>facilitate faster, smoother communication by enabling <br></br> users to automatically interact with github directly from discord.</p>
         </div>
         <Divider></Divider>
         <div className="grid flex-grow h-48 bg-base-300 place-items-center py-2.5">
@@ -51,8 +51,8 @@ function AboutHero() {
             </clipPath>
             </defs>
           </svg>
-          <h1 className="font-bold">200K Users</h1>
-          <p>Over the last year our Mind Garden has expaned to over 200,000 users.<br></br> Unbelivable right?!?!?</p>
+          <h1 className="font-bold">I Am Everywhere</h1>
+          <p>I'm in your discord right now.<br></br> Everybody uses AutoEris. E V E R Y B O D Y</p>
         </div>
       </div>
       <Hero>
@@ -61,10 +61,10 @@ function AboutHero() {
           <div className="max-w-md pr-24">
             <h1 className="text-5xl font-bold">Our Mission</h1>
             <p className="py-6">
-              “To spread the power of optimism.”
+              Never have to type a damn thing into the CLI again.
             </p>
             <p className="py-1">
-              “For our better yesterday, today, and tomorrow”
+              And make you a better coder, I GUESS.
             </p>
           </div>
           <svg width="768" height="433" viewBox="0 0 768 433" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,16 +1,16 @@
 import { Modal, Input, Button, Textarea } from "react-daisyui";
-import { React} from 'react'
+import {React} from 'react'
 
-function DashboardEditEntry({ handleToogleEditEntry, handleEditEntry, title, setTitle, entry, setEntry, feelingId, setFeelingId, feelings, selectedEntry }) {
+function DashboardAddNewPasswordModal({ handleToogleAddNewEntry, handleAddNewPassword, title, setTitle, entry, setEntry, feelingId, setFeelingId, feelings}) {
     const handleChange = event => {
       console.log(event.target.value);
       setFeelingId(event.target.value);
     };
-    console.log(selectedEntry);
+    
     return (
-        <Modal open={handleToogleEditEntry} onClickBackdrop={handleToogleEditEntry}>
+        <Modal open={handleToogleAddNewEntry} onClickBackdrop={handleToogleAddNewEntry}>
             <Modal.Header className="font-bold">
-                Edit Entry
+                Add New Entry
             </Modal.Header>
         
             <Modal.Body className="items-center text-center">
@@ -24,8 +24,8 @@ function DashboardEditEntry({ handleToogleEditEntry, handleEditEntry, title, set
                             </option>
                         ))}
                     </select>
-                    <Button onClick={handleEditEntry} type="submit" className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
-                        Edit Entry
+                    <Button onClick={handleAddNewPassword} type="submit" className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
+                        Add New Entry
                     </Button>
                 </div>
             </Modal.Body>
@@ -33,4 +33,4 @@ function DashboardEditEntry({ handleToogleEditEntry, handleEditEntry, title, set
     );
 }
 
-export default DashboardEditEntry;
+export default DashboardAddNewPasswordModal;

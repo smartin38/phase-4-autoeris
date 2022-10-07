@@ -28,7 +28,7 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
     })
     .then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:9292/entries/"+selectedEntry.id, {
+        fetch("http://localhost:9292/notes/"+selectedEntry.id, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

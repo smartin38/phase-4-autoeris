@@ -1,6 +1,7 @@
 {
     "name": "autoeris",
     "version": "0.1.0",
+    "homepage": "https://autoeris.ml",
     "private": true,
     "dependencies": {
         "@testing-library/react": "^12.1.5",

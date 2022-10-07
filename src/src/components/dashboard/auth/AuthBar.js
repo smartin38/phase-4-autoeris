@@ -14,7 +14,7 @@ function AuthBar(){
                 <div className="container p-5 mx-auto flex items-center justify-between">
                     <div className="flex mx-auto">
                         <Button href="/" className="text-xl normal-case" color="ghost">
-                            <img src="/img/logo.svg" alt="MindGarden" className="w-10 h-10 text-white p-2"/>
+                            <img src="/img/logo.svg" alt="AutoEris" className="w-10 h-10 text-white p-2"/>
                             AutoEris
                         </Button>
                     </div>

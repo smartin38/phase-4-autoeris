@@ -16,8 +16,7 @@ function Landing(){
     const [feelingId, setFeelingId] = useState("");
     const [entries, setEntries] = useState([]);
     const [feelings, setFeelings] = useState([]);
-    const [notes, setNotes] = useState([]);
-    const [notesId, setNotesId] = useState([]);
+    const [entriesId, setEntryId] = useState([]);
     const [selectedEntry, setSelectedEntry] = useState(null);
 
     const [toogleAddNewEntry, setToogleAddNewEntry] = useState(false);
@@ -36,11 +35,11 @@ function Landing(){
             setEntries(data);
         })
 
-        fetch("http://localhost:4000/feelings")
+        fetch("http://localhost:4000/favorites")
         .then((response) => response.json())
         .then((data) => {
-            setNotes(data);
-            setNotesId(data[0].id);
+            setFeelings(data);
+            setFeelingId(data[0].id);
         });
 
         // Set user id from local storage
@@ -100,17 +99,17 @@ function Landing(){
     
     return (
         <>
-            <DashboardBar logout={handleLogout} page="Dashboard"/>
-            <div className="flex col">
-                <DashboardPasswordList notes={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />
-                <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} />
+            <DashboardBar logout={handleLogout} page="Dashboard"/> "test3"
+            <div className="flex col"> "test5"
+                <DashboardPasswordList entries={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />"test"
+                <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} /> "test2"
                 {
                     toogleEditEntry ?
-                        <DashboardEditEntry handleToogleEditEntry={handleToogleEditEntry} handleEditEntry={handleEditEntry} title={title} setTitle={setTitle} entry={entry} setEntry={setEntry} feelingId={feelingId} selectedEntry={selectedEntry} setFeelingId={setFeelingId} feelings={feelings} />
+                        <DashboardEditEntry handleToogleEditNote={handleToogleEditEntry} handleEditNote={handleEditEntry} title={title} setTitle={setTitle} entry={entry} setEntry={setEntry} feelingId={feelingId} selectedEntry={selectedEntry} setFeelingId={setFeelingId} feelings={feelings} />
                     :
                         null
                 }
-            </div>
+            </div>"test4"
             <DashboardFooter /> 
         </>
     );

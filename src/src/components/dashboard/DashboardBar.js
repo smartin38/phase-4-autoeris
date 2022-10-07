@@ -8,8 +8,8 @@ function DashboardBar({ logout, page }){
                 <Navbar.Start>
                     <Link href="/dashboard">
                     <Button className="text-xl normal-case" color="ghost">
-                        <img src="/img/logo-blue.svg" alt="MindGarden" className="w-10 h-10 text-white p-2"/>
-                        MindGarden
+                        <img src="/img/logo-blue.svg" alt="Autoeris" className="w-10 h-10 text-white p-2"/>
+                        AutoEris
                     </Button>
                     </Link>
                 </Navbar.Start>

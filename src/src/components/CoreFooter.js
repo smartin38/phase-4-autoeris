@@ -5,11 +5,11 @@ function LandingFooter(){
     return (
         <Footer className="p-10 bg-zinc-100">
             <div>
-                <img src="/img/logo-blue.svg" alt="MindGarden" className="w-10 h-10"/>
+                <img src="/img/logo-blue.svg" alt="AutoEris" className="w-10 h-10"/>
                 <p>
-                    MindGarden
+                    AutoEris
                     <br />
-                    Providing reliable tech since 2002
+                    Definitely doesn't have a crush on Skynet, promise.
                 </p>
             </div>
             <div>
