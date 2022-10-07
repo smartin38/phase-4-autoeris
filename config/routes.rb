@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post "/favorites", to: "favorites#create"
   get "/notes", to: "notes#index"
   post "/notes", to: "notes#create"
+  patch "/notes/:id", to: "notes#update"
   get "/auto_login", to: "auth#auto_login"
   get "/user_is_authed", to: "auth#user_is_authed"
 end

@@ -1,5 +1,4 @@
 import { React } from 'react'
-
 import { Input, Button } from "react-daisyui";
 
 function AuthPasswordRecovery({ username, setUsername, handleRecovery }) {

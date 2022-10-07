@@ -17,33 +17,35 @@ before_action :set_note, only: %i[ show update destroy ]
     end
 
     def create
-        token = request.headers["token"]
-        user_id = decode_token(token)
-        if user_id
-            new_note = Note.create(note_params)
-            render json: new_note
-        else
-            render json: {error: "401 incorrect token"}, status: 401
-        end
+        # token = request.headers["token"]
+        # user_id = decode_token(token)
+        # if user_id
+        #     new_note = Note.create(note_params)
+        #     render json: new_note
+        # else
+        #     render json: {error: "401 incorrect token"}, status: 401
+        # end
+
+        
+        note = Note.create(note_params)
+        render json: note
     end
 
     def update
-        if note.update(note_params)
-            render json: note
-        else
-            render json: favorite.errors, status: :unprocessable_entity
-        end
+        note = Note.find_by!(id: params[:id])
+        note =  Note.update!(note_params)
+        render json: note
     end
 
     def destroy
-        note = note.find_by!(id: params[:id])
+        note = Note.find_by!(id: params[:id])
         note.destroy
     end
 
     private
 
     def set_note
-        note = note.find(params[:id])
+        note = Note.find(params[:id])
     end
 
     def note_params

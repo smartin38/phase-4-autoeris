@@ -4,6 +4,7 @@ import { React } from 'react'
 import DashboardBar from "../components/dashboard/DashboardBar";
 import DashboardFooter from "../components/dashboard/DashboardFooter";
 import DashboardPasswordList from "../components/dashboard/dashboard/DashboardPasswordList";
+import NewNoteForm from "../components/dashboard/dashboard/NewNoteForm";
 import DashboardPassword from "../components/dashboard/dashboard/DashboardPassword";
 import DashboardEditEntry from "../components/dashboard/dashboard/DashboardEditEntry";
 import Swal from 'sweetalert2';
@@ -24,7 +25,7 @@ function Landing(){
     const MySwal = withReactContent(Swal)
 
     useEffect(() => {
-        fetch("http://localhost:4000/notes/user/"+localStorage.getItem("id"), {
+        fetch("http://localhost:3000/notes/user/"+localStorage.getItem("id"), {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -33,9 +34,10 @@ function Landing(){
         .then(res => res.json())
         .then(data => {
             setEntries(data);
+            console.log(data)
         })
 
-        fetch("http://localhost:4000/favorites")
+        fetch("http://localhost:3000/favorites")
         .then((response) => response.json())
         .then((data) => {
             setFeelings(data);
@@ -53,7 +55,7 @@ function Landing(){
     }
 
     const handleEditEntry = () => {
-        fetch("http://localhost:4000/notes/"+selectedEntry.id, {
+        fetch("http://localhost:3000/notes/"+selectedEntry.id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -92,6 +94,9 @@ function Landing(){
         setToogleAddNewEntry(!toogleAddNewEntry);
     }
 
+
+
+
     const handleLogout = () => {
         localStorage.removeItem("id");
         window.location.href = "/";
@@ -99,17 +104,18 @@ function Landing(){
     
     return (
         <>
-            <DashboardBar logout={handleLogout} page="Dashboard"/> "test3"
-            <div className="flex col"> "test5"
-                <DashboardPasswordList entries={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />"test"
-                <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} /> "test2"
+            <DashboardBar logout={handleLogout} page="Dashboard"/>
+            <div className="flex col">
+                <DashboardPasswordList entries={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />
+                <NewNoteForm />
+                <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} />
                 {
                     toogleEditEntry ?
                         <DashboardEditEntry handleToogleEditNote={handleToogleEditEntry} handleEditNote={handleEditEntry} title={title} setTitle={setTitle} entry={entry} setEntry={setEntry} feelingId={feelingId} selectedEntry={selectedEntry} setFeelingId={setFeelingId} feelings={feelings} />
                     :
                         null
                 }
-            </div>"test4"
+            </div>
             <DashboardFooter /> 
         </>
     );

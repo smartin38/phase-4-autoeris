@@ -1,6 +1,7 @@
 import { Button } from "react-daisyui";
 import { GiNotebook } from "react-icons/gi";
 import { React } from 'react'
+// import { NewNoteForm } from './NewNoteForm'
 
 function DashboardPasswordLi({ entries, handleSelectedEntry} ) {
     const CapitalizeFirstLetter = (str) => {
