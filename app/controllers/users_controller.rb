@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:index, :create]
+  # skip_before_action :require_login, only: [:index, :create]
 
   def index
     user = User.all
@@ -11,11 +11,21 @@ class UsersController < ApplicationController
     render jsone user
   end
 
+  def login
+    user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
+    if user
+      token = generate_token(user.id)
+      render json: {user:user, token:token}
+    else
+      render json: {error:"wrong login info"}, status: 401
+    end
+  end
+
   def create
     user = User.create(user_params) 
     if user.valid?
         payload = {user_id: user.id}
-        token = encode_token(payload)
+        token = decode_token(payload)
         puts token
         render json: {user: user, jwt: token}
     else
