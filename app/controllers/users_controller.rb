@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def show
+    user = User.find_by!(id: params[:id])
+    render jsone user
+  end
+
   def create
     user = User.create(user_params) 
     if user.valid?
@@ -18,9 +23,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find_by!(id: params[:id])
+    user.destroy
+  end
+
   private 
 
   def user_params
     params.permit(:username, :password)
+  end
+
+  def set_user
+    user = User.find(params[:id])
   end
 end

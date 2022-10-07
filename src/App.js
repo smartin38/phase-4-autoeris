@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Header from './Header'
-import SignIn from './SignUp'
-import Login from './Login'
+import Header from './header/Header'
+import SignIn from './form/SignUp'
+import Login from './form/Login'
 
 function App() {
     const [user, setUser] = useState({})
     const [form, setForm] = useState("")
 
     useEffect(() => {
+        localStorage.setItem('user', user)
+    }, [user]);
+
+    useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
-            fetch(`http://localhost:4000/auto_login`, {
+            fetch(`http://localhost:3000/auto_login`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -34,7 +38,7 @@ function App() {
 
     const handleAuthClick = () => {
         const token = localStorage.getItem("token")
-        fetch(`http://localhost:4000/user_is_authed`, {
+        fetch(`http://localhost:3000/user_is_authed`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

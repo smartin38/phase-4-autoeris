@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Login(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
+
+    const [user, setUser] = useState(localStorage.getItem('user'));
+
+    useEffect(() => {
+        localStorage.setItem('user', user)
+    }, [user]);
 
     const handleLogin = (user) => {
         setUser(user)
@@ -37,7 +43,6 @@ function Login(props) {
                 handleLogin(data.user)
                 console.log(data)
             })
-
 
     }
     const formDivStyle = {

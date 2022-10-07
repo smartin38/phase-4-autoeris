@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  skip_before_action :require_login, only: [:login, :auth_login]
+  # skip_before_action :require_login, only: [:login, :auto_login]
   def login
     user = User.find_by!(username: params[:username])
     if user && user.authenticate(params[:password])
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     end
   end
 
-  def auth_login
+  def auto_login
     if session_user
       render json: session_user
     else
