@@ -1,5 +1,6 @@
 import { Button } from "react-daisyui";
 import { FaKey } from "react-icons/fa";
+import { React } from 'react'
 
 function DashboardPasswordItem({ setSelectedPassword, element, key }) {
     const CapitalizeFirstLetter = (str) => {

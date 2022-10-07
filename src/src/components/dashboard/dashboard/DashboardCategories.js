@@ -1,4 +1,5 @@
 import { MdOutlineApps, MdFavorite, MdPermIdentity, MdPassword } from "react-icons/md";
+import { React } from 'react'
 
 function DashboardCategories(){
     return (

@@ -1,4 +1,5 @@
 import { Modal, Input, Button, Textarea } from "react-daisyui";
+import { React } from 'react'
 
 function DashboardEditNote({ handleToogleEditNote, handleEditNote, title, setTitle, note, setNote, feelingId, setFeelingId, feelings, selectedEntry }) {
     const handleChange = event => {

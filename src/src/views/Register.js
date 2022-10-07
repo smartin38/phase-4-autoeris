@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AuthBar from "../components/dashboard/auth/AuthBar";
 import AuthRegisterForm from "../components/dashboard/auth/AuthRegisterForm";
+import { React } from 'react'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'

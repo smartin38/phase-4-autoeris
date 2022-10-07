@@ -1,6 +1,7 @@
 import { Hero, Button } from "react-daisyui";
 import { format, parseISO } from "date-fns";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
+import { React } from 'react'
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';

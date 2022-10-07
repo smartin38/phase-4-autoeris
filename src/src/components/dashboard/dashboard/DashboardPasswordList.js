@@ -1,5 +1,6 @@
 import { Button } from "react-daisyui";
 import { GiNotebook } from "react-icons/gi";
+import { React } from 'react'
 
 function DashboardPasswordLi({ notes, handleSelectedNote} ) {
     const CapitalizeFirstLetter = (str) => {
@@ -8,7 +9,7 @@ function DashboardPasswordLi({ notes, handleSelectedNote} ) {
 
     return (
         <>
-            {notes.map((element, key) => {
+            { notes.map((element, key) => {
                 return (
                 <li key={key} onClick={() => handleSelectedNote(key)}>
                     <Button color="accent" className="menu-link w-full">

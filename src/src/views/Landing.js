@@ -3,6 +3,7 @@ import LandingHero from "../components/Landing/Hero";
 import AboutHero from "../components/Landing/About";
 import ContactHero from "../components/Landing/Contact";
 import CoreFooter from "../components/CoreFooter";
+import { React } from 'react'
 
 function Landing(){
     return (

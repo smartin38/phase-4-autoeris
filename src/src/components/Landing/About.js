@@ -1,4 +1,5 @@
 import { Hero, Divider } from "react-daisyui"
+import { React } from 'react'
 
 function AboutHero() {
   return(

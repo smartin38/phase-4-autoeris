@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, logout, updateUsernameFromUser, deleteUserFromProfile, updatePasswordFromUser } from "../utils/Auth";
 import Swal from 'sweetalert2'
+import { React } from 'react'
 import withReactContent from 'sweetalert2-react-content'
 
 import DashboardBar from "../components/dashboard/DashboardBar";

@@ -1,4 +1,5 @@
 import { Input, Button } from "react-daisyui";
+import { React } from 'react'
 
 function AuthRegisterForm({ username, setUsername, password, setPassword, register }) {
     return (

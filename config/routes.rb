@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :show, :user_favorites, :create, :update, :destroy]
   resources :users, only: [:index, :show, :login, :create, :destroy]
   
-  post "/users", to: "user#create"
-  post "/login", to: "user#login"
+  
+  post "/users", to: "users#create"
+  post "/login", to: "users#login"
+  get "/login", to: "users#login"
   get "/auto_login", to: "auth#auto_login"
   get "/user_is_authed", to: "auth#user_is_authed"
 end

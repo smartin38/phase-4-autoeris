@@ -1,4 +1,5 @@
 import { Hero, Button, Card, Input, Textarea, Form} from "react-daisyui";
+import { React } from 'react'
 
 function ContactHero() {
     return (

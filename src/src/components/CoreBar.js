@@ -1,4 +1,5 @@
 import { Navbar, Button, Menu, Link } from 'react-daisyui';
+import { React } from 'react'
 
 function LandingBar(){
     return (

@@ -1,4 +1,5 @@
 import { Navbar, Button, Link, Dropdown } from 'react-daisyui';
+import { React } from 'react'
 
 function DashboardBar({ logout, page }){
     return (

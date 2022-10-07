@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AuthBar from "../components/dashboard/auth/AuthBar";
 import AuthLoginForm from "../components/dashboard/auth/AuthLoginForm";
+import { React } from 'react'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -32,8 +33,9 @@ function Login(){
         })
         .then(res => res.json())
         .then(data => {
-            if(data.id !== undefined){
-                localStorage.setItem("id", data.id);
+            console.log(data)
+            if(data.token !== undefined){
+                localStorage.setItem("id", data.token);
                 window.location.href = "/dashboard";
             }else{
                 MySwal.fire({

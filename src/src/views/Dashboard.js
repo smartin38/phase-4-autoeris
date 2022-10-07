@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { React } from 'react'
 
 import DashboardBar from "../components/dashboard/DashboardBar";
 import DashboardFooter from "../components/dashboard/DashboardFooter";
@@ -15,6 +16,8 @@ function Landing(){
     const [feelingId, setFeelingId] = useState("");
     const [entries, setEntries] = useState([]);
     const [feelings, setFeelings] = useState([]);
+    const [notes, setNotes] = useState([]);
+    const [notesId, setNotesId] = useState([]);
     const [selectedEntry, setSelectedEntry] = useState(null);
 
     const [toogleAddNewEntry, setToogleAddNewEntry] = useState(false);
@@ -99,7 +102,7 @@ function Landing(){
         <>
             <DashboardBar logout={handleLogout} page="Dashboard"/>
             <div className="flex col">
-                <DashboardPasswordList entries={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />
+                <DashboardPasswordList notes={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />
                 <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} />
                 {
                     toogleEditEntry ?

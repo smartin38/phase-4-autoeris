@@ -1,4 +1,5 @@
 import { Hero, Button } from "react-daisyui"
+import { React } from 'react'
 
 function LandingHero() {
   return(
