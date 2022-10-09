@@ -16,20 +16,32 @@ before_action :set_note, only: %i[ show update destroy ]
         render json: user
     end
 
+    # def create
+    #     token = request.headers["token"]
+    #     user_id = decode_token(token)
+    #     if user_id
+    #         new_note = Note.create!(name: params[:name], content: params[:content], user_id: user_id, favorite_id: user_id)
+    #         render json: new_note
+    #     else
+    #         render json: {error: "401 incorrect token"}, status: 401
+    #     end
+    # end
+      
     def create
-        # token = request.headers["token"]
-        # user_id = decode_token(token)
-        # if user_id
-        #     new_note = Note.create(note_params)
-        #     render json: new_note
-        # else
-        #     render json: {error: "401 incorrect token"}, status: 401
-        # end
-
-        
-        note = Note.create(note_params)
+        note = Note.create!(note_params)
         render json: note
     end
+    # def create
+    #     # token = request.headers["token"]
+    #     # user_id = decode_token(token)
+    #     note = Note.create!(note_params)
+    #     render json: note
+    # end
+
+    # def create
+    #     note = Note.create!(name: params[:name],content: params[:content])
+    #     render json: note
+    # end
 
     def update
         note = Note.find_by!(id: params[:id])
@@ -50,5 +62,6 @@ before_action :set_note, only: %i[ show update destroy ]
 
     def note_params
         params.permit(:name, :content, :user_id, :favorite_id)
+        # params.permit(:name, :content, :user_id)
     end
 end

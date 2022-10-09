@@ -1,122 +1,145 @@
 import { useState, useEffect } from "react";
-import { React } from 'react'
 
 import DashboardBar from "../components/dashboard/DashboardBar";
 import DashboardFooter from "../components/dashboard/DashboardFooter";
 import DashboardPasswordList from "../components/dashboard/dashboard/DashboardPasswordList";
-import NewNoteForm from "../components/dashboard/dashboard/NewNoteForm";
 import DashboardPassword from "../components/dashboard/dashboard/DashboardPassword";
-import DashboardEditEntry from "../components/dashboard/dashboard/DashboardEditEntry";
+import DashboardAddNewPasswordModal from "../components/dashboard/dashboard/DashboardAddNewPasswordModal";
+import DashboardEditNote from "../components/dashboard/dashboard/DashboardEditNote";
 import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import withReactNote from 'sweetalert2-react-content';
 
-function Landing(){
-    const [title, setTitle] = useState("");
-    const [entry, setEntry] = useState("");
+function Landing() {
+    const [name, setName] = useState("");
+    const [content, setContent] = useState("");
     const [userId, setUserId] = useState("");
-    const [feelingId, setFeelingId] = useState("");
-    const [entries, setEntries] = useState([]);
-    const [feelings, setFeelings] = useState([]);
-    const [entriesId, setEntryId] = useState([]);
-    const [selectedEntry, setSelectedEntry] = useState(null);
+    // const [favoriteId, setFavoriteId] = useState("");
+    const [notes, setNotes] = useState([]);
+    // const [favorites, setFavorites] = useState([]);
+    const [selectedNote, setSelectedNote] = useState(null);
 
-    const [toogleAddNewEntry, setToogleAddNewEntry] = useState(false);
-    const [toogleEditEntry, setToogleEditEntry] = useState(false);
-    const MySwal = withReactContent(Swal)
+    const [toogleAddNewNote, setToogleAddNewNote] = useState(false);
+    const [toogleEditNote, setToogleEditNote] = useState(false);
+    const MySwal = withReactNote(Swal)
 
     useEffect(() => {
-        fetch("http://localhost:3000/notes/user/"+localStorage.getItem("id"), {
+        fetch(process.env.REACT_APP_API_URL + "/notes/user/" + localStorage.getItem("id"), {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            setEntries(data);
-            console.log(data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                setNotes(data);
+            })
 
-        fetch("http://localhost:3000/favorites")
-        .then((response) => response.json())
-        .then((data) => {
-            setFeelings(data);
-            setFeelingId(data[0].id);
-        });
+        // fetch("http://localhost:3000/favorites")
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         setFavorites(data);
+        //         setFavoriteId(data[0].id);
+        //     });
 
         // Set user id from local storage
         setUserId(localStorage.getItem("id"));
     }, []);
 
-    const handleToogleEditEntry = () => {
-        setTitle(selectedEntry.title);
-        setEntry(selectedEntry.entry);
-        setToogleEditEntry(!toogleEditEntry);
+    const handleAddNewPassword = () => {
+        fetch("http://localhost:3000/notes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: name,
+                content: content,
+                user_id: userId
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                setNotes([...notes, data]);
+                setToogleAddNewNote(false);
+                MySwal.fire({
+                    content: "Success",
+                    text: "Note added successfully",
+                    icon: "success",
+                    confirmButtonText: "Ok"
+                })
+            })
     }
 
-    const handleEditEntry = () => {
-        fetch("http://localhost:3000/notes/"+selectedEntry.id, {
+    const handleToogleEditNote = () => {
+        setName(selectedNote.name);
+        setContent(selectedNote.content);
+        setToogleEditNote(!toogleEditNote);
+    }
+
+    const handleEditNote = () => {
+        fetch("http://localhost:3000/notes/" + selectedNote.id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title: title,
-                entry: entry,
-                user_id: userId,
-                feeling_id: feelingId
+                name: name,
+                content: content,
+                user_id: userId
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            setEntries(entries.map(entry => {
-                if(entry.id === data.id){
-                    return data;
-                }else{
-                    return entry;
-                }
-            }));
-            setToogleEditEntry(false);
-            MySwal.fire({
-                title: "Success",
-                text: "Entry edited successfully",
-                icon: "success",
-                confirmButtonText: "Ok"
+            .then(res => res.json())
+            .then(data => {
+                setNotes(notes.map(Note => {
+                    if (Note.id === data.id) {
+                        return data;
+                    } else {
+                        return Note;
+                    }
+                }));
+                setToogleEditNote(false);
+                MySwal.fire({
+                    name: "Success",
+                    text: "Note edited successfully",
+                    icon: "success",
+                    confirmButtonText: "Ok"
+                })
             })
-        })
     }
 
-    const handleSelectedEntry = (key) => {
-        setSelectedEntry(entries[key]);
+    const handleSelectedNote = (key) => {
+        setSelectedNote(notes[key]);
     }
 
-    const handleToogleAddNewEntry = () => {
-        setToogleAddNewEntry(!toogleAddNewEntry);
+    const handleToogleAddNewNote = () => {
+        setToogleAddNewNote(!toogleAddNewNote);
     }
-
-
-
 
     const handleLogout = () => {
         localStorage.removeItem("id");
         window.location.href = "/";
     }
-    
+
     return (
         <>
-            <DashboardBar logout={handleLogout} page="Dashboard"/>
+            <DashboardBar logout={handleLogout} page="Dashboard" />
             <div className="flex col">
-                <DashboardPasswordList entries={entries} handleSelectedEntry={handleSelectedEntry} handleToogleAddNewEntry={handleToogleAddNewEntry} />
-                <NewNoteForm />
-                <DashboardPassword feelings={feelings} feelingId={feelingId} setFeelingId={setFeelingId} selectedEntry={selectedEntry} handleToogleEditEntry={handleToogleEditEntry} />
+                <DashboardPasswordList notes={notes} handleSelectedNote={handleSelectedNote} handleToogleAddNewNote={handleToogleAddNewNote} />
+                <DashboardPassword  selectedNote={selectedNote} handleToogleEditNote={handleToogleEditNote} />
                 {
-                    toogleEditEntry ?
-                        <DashboardEditEntry handleToogleEditNote={handleToogleEditEntry} handleEditNote={handleEditEntry} title={title} setTitle={setTitle} entry={entry} setEntry={setEntry} feelingId={feelingId} selectedEntry={selectedEntry} setFeelingId={setFeelingId} feelings={feelings} />
-                    :
+                    toogleAddNewNote ?
+                        <DashboardAddNewPasswordModal handleToogleAddNewNote={handleToogleAddNewNote} handleAddNewPassword={handleAddNewPassword} name={name} setName={setName} content={content} setContent={setContent} />
+                        :
+                        null
+                }
+                {
+                    toogleEditNote ?
+                        <DashboardEditNote handleToogleEditNote={handleToogleEditNote} handleEditNote={handleEditNote} name={name} setName={setName} content={content} setContent={setContent} selectedNote={selectedNote} />
+                        :
                         null
                 }
             </div>
-            <DashboardFooter /> 
+            <DashboardFooter />
         </>
     );
 }

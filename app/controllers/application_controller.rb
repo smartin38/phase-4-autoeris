@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     # before_action :require_login
+    # include ActionController::Cookies
 
     def generate_token(user_id)
         JWT.encode({user_id:user_id}, get_secret_key)
@@ -61,7 +62,7 @@ class ApplicationController < ActionController::API
     end
 
     def get_secret_key
-        "stay back!"
+        "jwt"
     end
 
 end

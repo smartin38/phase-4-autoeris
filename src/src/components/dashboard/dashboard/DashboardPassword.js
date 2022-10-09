@@ -6,7 +6,7 @@ import { React } from 'react'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry, handleToogleEditEntry }) {
+function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedNote, handleToogleEditNote }) {
   const MySwal = withReactContent(Swal)
   const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -16,7 +16,7 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
       buttonsStyling: false,
   });
 
-  const handleDeleteEntry = (id) => {
+  const handleDeleteNote = (id) => {
     MySwal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,7 +28,7 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
     })
     .then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:9292/notes/"+selectedEntry.id, {
+        fetch("http://localhost:9292/notes/"+selectedNote.id, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -55,19 +55,19 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
 
   return (
     <div className="w-4/6 ">
-      {selectedEntry ? (
+      {selectedNote ? (
         <>
           <Hero>
             <Hero.Content className="flex-col w-4/6">
               <div className="flex flex-row space-x-4 place-items-center max-w">
                 <h1>
-                  Title: <p className="font-bold">{selectedEntry.title}</p>
+                  Title: <p className="font-bold">{selectedNote.title}</p>
                 </h1>
                 <h1>
                   Date & Time:{" "}
                   <p className="font-bold">
                     {format(
-                      parseISO(selectedEntry.created_at),
+                      parseISO(selectedNote.created_at),
                       "dd/mm/yyyy HH:mm:ss"
                     )}
                   </p>
@@ -76,7 +76,7 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
                   favorite:
                   <p className="font-bold">
                     {favorites.map((favorite) => {
-                      if (favorite.id === selectedEntry.favorite_id) {
+                      if (favorite.id === selectedNote.favorite_id) {
                         return favorite.name;
                       }
                       else {
@@ -85,16 +85,16 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
                     })}
                   </p>
                 </h1>
-                <Button onClick={() => handleToogleEditEntry()}>
+                <Button onClick={() => handleToogleEditNote()}>
                   <FaPencilAlt />
                 </Button>
-                <Button onClick={() => handleDeleteEntry(selectedEntry.id)} color="error" className="text-white">
+                <Button onClick={() => handleDeleteNote(selectedNote.id)} color="error" className="text-white">
                   <FaTrash />
                 </Button>
               </div>
               <div className="flex-col text-center space-y-5">
                 <div className="flex flex-row space-x-5">
-                  <p>{selectedEntry.entry}</p>
+                  <p>{selectedNote.Note}</p>
                 </div>
               </div>
             </Hero.Content>
@@ -103,7 +103,7 @@ function DashboardPassword({ favorites, favoriteId, setFavoriteId, selectedEntry
       ) : (
         <Hero>
           <Hero.Content>
-            <h1 className="text-2xl font-bold">No Entry selected</h1>
+            <h1 className="text-2xl font-bold">No Note Selected</h1>
           </Hero.Content>
         </Hero>
       )}
